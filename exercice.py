@@ -33,8 +33,8 @@ def create_list() -> list:
 
 
 def compute_mse(model_dict: dict) -> dict:
-    TotalDiffErreurquad = 0
     for module in model_dict:
+        TotalDiffErreurquad = 0
         for erreurTuple in model_dict[module]:
             diffErreurquad = (erreurTuple[1] - erreurTuple[0]) **2
             TotalDiffErreurquad += diffErreurquad
