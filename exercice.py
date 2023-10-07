@@ -1,31 +1,46 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from matplotlib.colors import cnames
 
+def list_to_dict(some_list):
+    dictlist = {}
+    for index,cle in enumerate(some_list):
+        dictlist[cle] = index
 
-def list_to_dict(some_list: list) -> dict:
-    # TODO: Transformer la liste en dictionnaire, les éléments de la liste deviennent les clés et leur index deviennent les valeurs
+    return dictlist
 
-    return {}
 
 
 def color_name_to_hex(colors: list) -> list:
-    # TODO: Trouver la valeur hex de chaque couleur dans la liste et créer une liste de tupple où le premier élément est le nom de la couleur et le deuxième est la valeur hex
+    listcolors = []
+    for couleur in colors:
+        valeur = 0
+        for lettre in couleur:
+            valeur += ord(lettre)
+        OxValeur = hex(valeur)
+        listcolors.append((couleur,OxValeur))
+  
+    return listcolors
 
-    return []
 
 
 def create_list() -> list:
-    # TODO: Créer une liste des 10 000 premiers entiers positif, sauf pour les entiers de 15 à 350
+    intListe = [i for i in range(10000) if (i > 0)  and i == int(i) ]
+    trueIntListe = [i for i in intListe if not(15 <= i <= 350) ]
 
-    return []
+    return trueIntListe
+
 
 
 def compute_mse(model_dict: dict) -> dict:
-    # TODO: Calculer l'erreur quadratique moyen pour chaque modèle. Retourner un dictionnaire contenant les MSE.
-
-    return {}
+    TotalDiffErreurquad = 0
+    for module in model_dict:
+        for erreurTuple in model_dict[module]:
+            diffErreurquad = (erreurTuple[1] - erreurTuple[0]) **2
+            TotalDiffErreurquad += diffErreurquad
+        MSE = TotalDiffErreurquad / len(model_dict[module])
+        model_dict[module] = MSE
+    return model_dict
 
 
 def main() -> None:
