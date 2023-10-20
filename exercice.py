@@ -40,6 +40,7 @@ def compute_mse(model_dict: dict) -> dict:
             TotalDiffErreurquad += diffErreurquad
         MSE = TotalDiffErreurquad / len(model_dict[module])
         model_dict[module] = MSE
+    model_dict = {key: value for key, value in sorted(model_dict.items(), key= lambda x: x[1], reverse= True) }
     return model_dict
 
 
